@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": true,
+  "type": "object",
+  "title": "Terraform Variables",
+  "properties": {
+    "location": {
+      "type": "string",
+      "enum": ["westus2", "eastus", "eastus2", "westeurope", "northeurope"],
+      "default": "westus2",
+      "description": "Azure region to deploy resources"
+    },
+    "environment": {
+      "type": "string",
+      "enum": ["dev", "staging", "prod"],
+      "default": "dev",
+      "description": "Environment name"
+    },
+    "project_name": {
+      "type": "string",
+      "default": "terraform-demo",
+      "description": "Name of the project"
+    },
+    "vnet_cidr": {
+      "type": "string",
+      "default": "10.0.0.0/16",
+      "pattern": "^([0-9]{1,3}\\.){3}[0-9]{1,3}\\/[0-9]{1,2}$",
+      "description": "CIDR block for Virtual Network"
+    },
+    "public_subnet_cidr": {
+      "type": "string",
+      "default": "10.0.1.0/24",
+      "pattern": "^([0-9]{1,3}\\.){3}[0-9]{1,3}\\/[0-9]{1,2}$",
+      "description": "CIDR block for public subnet"
+    }
+  },
+  "required": [
+    "location",
+    "environment",
+    "project_name",
+    "vnet_cidr",
+    "public_subnet_cidr"
+  ]
+}
